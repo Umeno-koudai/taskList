@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>タスク入力</title>
+    <style>
+      body { font-family: sans-serif; }
+      label { display: inline-block; margin-bottom: 50px;}
+      input[type= "text"] { width: 300px; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; box-sizing:border-box;}
+      button { padding: 10px 20px; background-color: #008000; color:white; border:none;cursor:pointer; position: fixed; bottom: 20px; right: 20px;}
+    </style>
+  </head>
+  <body>
+    <form id="taskForm">
+      <label for="taskName">タスク名</label>
+      <input type="text" id="taskName" name="taskName">
+
+      <div>
+      <label for="startDate">開始日</label>
+      <input type="date" id="startDate" name="startDate" placeholder="YYYY/MM/DD">
+
+      <label for="endDate">終了日</label>
+      <input type="date" id="endDate" name="endDate" placeholder="YYYY/MM/DD">
+      </div>
+
+      <div>
+      <label for="startTime">開始時間</label>
+      <input type="time" id="startTime" name="startTime" placeholder="hh:mm">
+
+      <label for="endTime">終了時間</label>
+      <input type="time" id="endTime" name="endTime" placeholder="hh:mm">
+      </div>
+
+      <div>
+      <button type="button" onclick="submitForm()">送信</button>
+      </div>
+
+    </form>
+    <script>
+      function submitForm(){
+        console.log("Submit");
+        const formData = {
+          taskName:document.getElementById(`taskName`).value,
+          startDate:document.getElementById(`startDate`).value,
+          endDate:document.getElementById(`endDate`).value,
+          startTime:document.getElementById(`startTime`).value,
+          endTime:document.getElementById(`endTime`).value
+        }
+        console.log(formData);
+        google.script.run.processFormData(formData);
+        google.script.host.close();
+      }
+    </script>
+  </body>
+</html>
